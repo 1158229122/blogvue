@@ -3,16 +3,21 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import httpServer from '../src/http/http'
-import ApiSetting from './http/ApiUser'
-
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+import './assets/css/style.less'
+import store from './store'
+import http from '@/http/http'
+import apiUser from '@/http/ApiUser'
 Vue.config.productionTip = false
-Vue.prototype.$http=httpServer
-Vue.prototype.$apiUser=ApiSetting
+Vue.use(ElementUI)
+Vue.prototype.$http=http
+Vue.prototype.$apiUser=apiUser
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  store
 })

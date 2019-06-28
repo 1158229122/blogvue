@@ -86,10 +86,11 @@ const httpServer = (opts, data) => {
     axios(httpDefaultOpts).then(
       (res) => {
         if(100!=res.data.code) {
-          if(res.data.code==121 ||res.data.code==122||res.data.code==123){
+          if(res.data.code==121){
             //登录
             this.$router.push({
-              path:"/login"
+              name:"Login",
+              path:"/Login?login=1"
             })
           }else{
             reject(res.data);

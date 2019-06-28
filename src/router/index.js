@@ -1,29 +1,111 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: '首页',
-      component:resolve => require(["@/page/index"], resolve),
-    },
-    {
-      path:"/login",
-      name:"登录",
-      component:resolve => require(["@/page/login"], resolve),
-      
-    },
-    {
-      path:"/register",
-      name:"注册",
-      component:resolve => require(["@/page/register"], resolve),
-      meta: {
-        keepAlive: false // 需要被缓存
-      }
-    },
-  ]
+	scrollBehavior(to, from, savePosition) { // 在点击浏览器的“前进/后退”，或者切换导航的时候触发。
+		if (savePosition) {
+			return savePosition;
+		} else {
+            var top;
+            if (window.innerWidth >= 700) {
+                 top = 676
+            } else {
+                 top = 267
+            }
+			return {
+				x: 0,
+				y: top
+			}
+		}
+	},
+	routes: [{
+			path: '/',
+			component: resolve => require(['../pages/Home.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'Home'
+		}, //首页
+		{
+			path: '/Home',
+			component: resolve => require(['../pages/Home.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'Home'
+		}, //首页
+		{
+			path: '/Share',
+			component: resolve => require(['../pages/Share.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'Share'
+		}, //分类
+		{
+			path: '/DetailShare',
+			component: resolve => require(['../pages/DetailShare.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'DetailShare'
+		}, //分享详情
+		{
+			path: '/Reward',
+			component: resolve => require(['../pages/Reward.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'Reward'
+		}, //赞赏
+		{
+			path: '/FriendsLink',
+			component: resolve => require(['../pages/FriendsLink.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'FriendsLink'
+		}, //伙伴
+		{
+			path: '/Message',
+			component: resolve => require(['../pages/Message.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'Message'
+		}, //留言板
+		{
+			path: '/Aboutme',
+			component: resolve => require(['../pages/Aboutme.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'Aboutme'
+		}, //关于
+		{
+			path: '/Login',
+			component: resolve => require(['../pages/Login.vue'], resolve),
+			meta: {
+				auth: false
+			},
+			name: 'Login'
+		}, //注册登录
+		{
+			path: '/UserInfo',
+			component: resolve => require(['../pages/UserInfo.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'UserInfo'
+		}, //用户个人中心
+		{
+			path: '/LikeCollect',
+			component: resolve => require(['../pages/LikeCollect.vue'], resolve),
+			meta: {
+				auth: true
+			},
+			name: 'LikeCollect'
+		} //用户个人中心
+	]
 })
